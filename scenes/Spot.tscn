@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8btfiwna3ca"]
+
+[ext_resource type="Script" uid="uid://badu3heufcgmu" path="res://scenes/Spot.gd" id="1_f1r8g"]
+[ext_resource type="Texture2D" uid="uid://bf4acfsvv6cwg" path="res://icon.svg" id="2_0rvw0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6ykg"]
+radius = 79.60528
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_f1r8g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n6ykg")
+debug_color = Color(0.6430451, 0.335767, 1, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.9999981, -1)
+scale = Vector2(0.29687497, 0.24218751)
+texture = ExtResource("2_0rvw0")

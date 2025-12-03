@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://dy0kw0yxww5aa"]
+
+[ext_resource type="Script" uid="uid://bog38pjfcm0ni" path="res://scenes/Crater.gd" id="1_gn3gw"]
+[ext_resource type="Texture2D" uid="uid://b8tc4jco4iik4" path="res://art/Crater.png" id="2_mwv51"]
+[ext_resource type="Script" uid="uid://dxf4xy7bwjwgp" path="res://scripts/Player.gd" id="3_rjxo6"]
+[ext_resource type="Texture2D" uid="uid://cmqglxb811emk" path="res://art/Robot.png" id="4_wk848"]
+[ext_resource type="PackedScene" uid="uid://c8btfiwna3ca" path="res://scenes/Spot.tscn" id="5_o3b4c"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yf6uk"]
+vertices = PackedVector2Array(2347, 1416.0078, -477.96875, 1420.9766, -476.46094, 786.71875, 2347.5469, 786.71875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-486.44092, 776.7167, 2357.559, 776.7167, 2357, 1426, -488, 1431)])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cedul"]
+radius = 102.0833
+
+[node name="Crater" type="Node2D"]
+script = ExtResource("1_gn3gw")
+metadata/_edit_horizontal_guides_ = [1122.0]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(1003.4408, 470.28326)
+scale = Vector2(28.408815, 19.285666)
+texture = ExtResource("2_mwv51")
+
+[node name="NavRegion" type="NavigationRegion2D" parent="."]
+position = Vector2(66, -337)
+navigation_polygon = SubResource("NavigationPolygon_yf6uk")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(101, 615)
+motion_mode = 1
+script = ExtResource("3_rjxo6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(2.28, 2.05)
+texture = ExtResource("4_wk848")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_cedul")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DialogueLabel" type="Label" parent="UI"]
+offset_left = 494.44092
+offset_top = -660.7167
+offset_right = 534.4409
+offset_bottom = -637.7167
+metadata/_edit_use_anchors_ = true
+
+[node name="Props" type="Node2D" parent="."]
+position = Vector2(155.44092, -351.7167)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(155.44092, -351.7167)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-1411.5776, 310.86188)
+scale = Vector2(0.096926674, 1.3936404)
+polygon = PackedVector2Array(-197, 822, 12, 840, 196, 853, 409, 882, 778, 868, 1176, 873, 1512, 893, 1856, 809, 2063, 700, 2223, 535, 2458, 442, 2581, 381, 2631, 190, 2473.559, 148.7167, 2644, 70, 2646, 979, -186, 982)
+
+[node name="Spots" type="Node2D" parent="."]
+
+[node name="Spot" parent="Spots" instance=ExtResource("5_o3b4c")]
+position = Vector2(1037, 881)
+
+[node name="Spot2" parent="Spots" instance=ExtResource("5_o3b4c")]
+position = Vector2(99, 857)
